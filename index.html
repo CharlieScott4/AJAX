@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html Lang="en">
+    <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First AJAX</title>
+    </head>
+    <body>
+        <p id="word"></p>
+        <button id="btn">Get Only One</button>
+        <script>
+            // the 200 means OK and the 4 means
+            let myRequest = new XMLHttpRequest();
+            myRequest.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200) {
+              document.getElementById('word').innerHTML = myRequest.responseText;
+            }
+            };
+            //calling words.text file and then sending them
+myRequest.open("GET", "words.text", true);
+myRequest.send();
+
+document.getElementById('btn').addEventListener("click", getOneWord);
+function getOneWord(){
+// console.log("IT WORKS");
+let myArray = myRequest.responseText.split(", ");
+console.log(myArray);}
+
+
+        </script>
+    </body>
+</html>
